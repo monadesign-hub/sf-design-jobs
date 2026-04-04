@@ -1,0 +1,88 @@
+import type { Job } from "@/types";
+import { normalizeJob } from "@/lib/normalize";
+
+const SLUGS = [
+  "airbnb",
+  "figma",
+  "notion",
+  "stripe",
+  "anthropic",
+  "databricks",
+  "airtable",
+  "asana",
+  "brex",
+  "coinbase",
+  "datadog",
+  "duolingo",
+  "faire",
+  "fivetran",
+  "glean",
+  "gusto",
+  "hex",
+  "heygen",
+  "hightouch",
+  "hubspot",
+  "klaviyo",
+  "launchdarkly",
+  "lyft",
+  "pinterest",
+  "reddit",
+  "replit",
+  "runway",
+  "scaleai",
+  "squarespace",
+  "vercel",
+  "waymo",
+  "webflow",
+  "xai",
+  "udio",
+  "together-ai",
+  "typeface",
+];
+
+type GreenHouseJob = {
+  id: number;
+  title: string;
+  location: { name: string };
+  absolute_url: string;
+  updated_at?: string;
+};
+
+async function fetchCompany(slug: string): Promise<Job[]> {
+  const url = `https://boards-api.greenhouse.io/v1/boards/${slug}/jobs`;
+  try {
+    const res = await fetch(url, {
+      headers: { "User-Agent": "sf-design-jobs/1.0" },
+      next: { revalidate: 0 },
+    });
+    if (!res.ok) return [];
+    const data = (await res.json()) as { jobs: GreenHouseJob[] };
+    const jobs: Job[] = [];
+    for (const raw of data.jobs ?? []) {
+      const normalized = normalizeJob({
+        title: raw.title,
+        company: slug.charAt(0).toUpperCase() + slug.slice(1),
+        companySlug: slug,
+        location: raw.location?.name ?? "",
+        url: raw.absolute_url,
+        source: "greenhouse",
+        postedAt: raw.updated_at ?? null,
+      });
+      if (normalized) jobs.push(normalized);
+    }
+    return jobs;
+  } catch {
+    return [];
+  }
+}
+
+export async function fetchGreenhouse(): Promise<Job[]> {
+  const all: Job[] = [];
+  for (const slug of SLUGS) {
+    const jobs = await fetchCompany(slug);
+    all.push(...jobs);
+    // Rate-limit courtesy delay
+    await new Promise((r) => setTimeout(r, 120));
+  }
+  return all;
+}
