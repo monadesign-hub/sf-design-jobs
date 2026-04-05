@@ -2,16 +2,14 @@ import type { Job } from "@/types";
 import { normalizeJob } from "@/lib/normalize";
 
 const SLUGS = [
-  "plaid",
-  "palantir",
-  "zoox",
-  "contentsquare",
-  "fullscript",
-  "logrocket",
-  "padsplit",
-  "skio",
-  "xsolla",
-  "trellis",
+  // original
+  "plaid", "palantir", "zoox", "contentsquare", "fullscript", "logrocket",
+  "padsplit", "skio", "xsolla", "trellis",
+  // SaaS / B2B
+  "mimecast", "namely", "reflektive", "betterworks", "15five", "cultureamp",
+  "lattice", "small-improvements", "leapsome", "engagedly", "kazoo",
+  "clearbit", "zoominfo", "apollo", "outreach", "salesloft", "groove",
+  "mixmax", "yesware", "cirrus-insight", "dooly", "clari", "gong",
 ];
 
 type LeverPosting = {
