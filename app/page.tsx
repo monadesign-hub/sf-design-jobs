@@ -53,15 +53,28 @@ function SourceBadge({ source }: { source: string }) {
 }
 
 function CompanyLogo({ job }: { job: Job }) {
+  const domain = job.companyDomain;
+  const clearbit = `https://logo.clearbit.com/${domain}`;
+  const googleFavicon = `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
+  const [src, setSrc] = useState(clearbit);
   const [failed, setFailed] = useState(false);
+
+  function handleError() {
+    if (src === clearbit) {
+      setSrc(googleFavicon); // try Google favicon as fallback
+    } else {
+      setFailed(true); // both failed, show letter
+    }
+  }
+
   return (
     <span className="logo-wrap">
-      {failed || !job.logoUrl ? (
+      {failed ? (
         <span className="logo-fallback">{job.company.charAt(0)}</span>
       ) : (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={job.logoUrl} alt={job.company} width={22} height={22}
-          onError={() => setFailed(true)} />
+        <img src={src} alt={job.company} width={22} height={22}
+          onError={handleError} />
       )}
     </span>
   );
