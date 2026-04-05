@@ -17,6 +17,33 @@ const SLUGS = [
   "zapier", "retool", "loom", "coda", "linear", "front", "mercury",
   "pilot", "digits", "finch", "remote", "deel", "expensify", "bill",
   "ironclad", "contractbook", "juro",
+  // Fintech
+  "robinhood", "chime", "affirm", "plaid", "marqeta", "nerdwallet",
+  "betterment", "wealthfront", "sofi", "blend", "opendoor", "fundrise",
+  "credible", "greenlight", "deserve", "unit", "lithic", "column",
+  // Enterprise / Cloud
+  "salesforce", "oracle", "servicenow", "workday", "box", "splunk",
+  "newrelic", "sumo-logic", "looker", "domo", "thoughtspot", "sigma",
+  "alation", "atscale", "metabase",
+  // Dev tools / Infrastructure
+  "hashicorp", "circleci", "netlify", "render", "railway", "fly",
+  "neon", "planetscale", "cockroachdb", "timescale", "hasura",
+  "appsmith", "budibase", "n8n", "pipedream",
+  // Consumer / Social
+  "nextdoor", "thumbtack", "taskus", "gopuff", "instacart",
+  "doordash", "whatnot", "offerpad", "hippo", "lemonade",
+  // Health / Bio
+  "modernhealth", "cerebral", "headspace", "calm", "noom",
+  "hims", "ro", "carbon-health", "devoted", "arcadia",
+  // HR / People tools
+  "lattice", "rippling", "namely", "bamboohr", "paychex",
+  "justworks", "gusto", "sequoia", "pave", "levelsai",
+  // Security
+  "crowdstrike", "lacework", "orca-security", "snyk", "aquasecurity",
+  "wiz", "cybereason", "exabeam", "hunters",
+  // Other SF tech
+  "lyra", "notion", "lob", "golinks", "vanta", "drata",
+  "secureframe", "tugboat", "benchling", "benchmarkEmail",
 ];
 
 type GreenHouseJob = {

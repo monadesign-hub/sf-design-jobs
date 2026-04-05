@@ -16,6 +16,20 @@ const SLUGS = [
   "common-room", "catchpoint", "clerk", "nango", "trigger", "inngest",
   "resend", "loops", "customer-io", "braze", "iterable", "klaviyo",
   "attentive", "postscript",
+  // More AI startups
+  "mistral", "perplexity", "cognition", "anysphere", "imbue",
+  "adept", "cohere", "together", "modal", "replicate",
+  "huggingface", "scale", "labelbox", "humanloop", "arize",
+  "weights-biases", "langfuse", "helicone", "portkey",
+  // Design / Product tools
+  "framer", "principle", "overflow", "zeplin", "abstract",
+  "supernova", "knapsack", "specify", "tokens-studio",
+  // Fintech / Crypto
+  "mercury", "ramp", "brex", "puzzle", "finta", "liveblocks",
+  "privy", "dynamic", "alchemy", "quicknode", "infura",
+  // More SF startups
+  "persona", "socure", "alloy", "sardine", "unit21",
+  "sift", "kount", "stripe-radar", "bolt", "recurly",
 ];
 
 type AshbyJob = {

@@ -10,6 +10,20 @@ const SLUGS = [
   "lattice", "small-improvements", "leapsome", "engagedly", "kazoo",
   "clearbit", "zoominfo", "apollo", "outreach", "salesloft", "groove",
   "mixmax", "yesware", "cirrus-insight", "dooly", "clari", "gong",
+  // More SF tech
+  "asana", "evernote", "box", "dropbox", "docusign", "okta",
+  "splunk", "new-relic", "pagerduty", "fastly", "cloudflare",
+  "twilio", "sendgrid", "mailchimp", "constantcontact",
+  "zendesk", "freshworks", "helpscout", "intercom", "drift",
+  // Consumer
+  "lyft", "doordash", "instacart", "postmates", "caviar",
+  "opentable", "yelp", "nextdoor", "offerUp", "mercari",
+  // Fintech
+  "robinhood", "coinbase", "kraken", "gemini", "bitpanda",
+  "affirm", "afterpay", "klarna", "zip", "sezzle",
+  // Health
+  "oscar", "clover", "alignment", "cityblock", "virta",
+  "livongo", "omada", "hinge-health", "sword", "kaia",
 ];
 
 type LeverPosting = {
