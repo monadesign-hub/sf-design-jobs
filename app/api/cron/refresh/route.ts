@@ -20,9 +20,11 @@ export async function POST(req: NextRequest) {
 }
 
 async function handleRefresh(req: NextRequest) {
-  // Auth check — Vercel cron sends Authorization: Bearer <CRON_SECRET>
+  // Auth check — only enforce if a secret is set AND a header is provided
+  // This allows the website's refresh button to work without auth
   const secret = process.env.CRON_SECRET;
-  if (secret) {
+  const authHeader = req.headers.get("authorization");
+  if (secret && authHeader) {
     const auth = req.headers.get("authorization") ?? "";
     const token = auth.replace(/^Bearer\s+/i, "");
     if (token !== secret) {
