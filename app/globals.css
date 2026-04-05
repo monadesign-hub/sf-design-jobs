@@ -328,11 +328,56 @@ h1 {
 }
 
 /* ── Mobile ─────────────────────────────────────────────────────── */
-@media (max-width: 640px) {
+@media (max-width: 768px) {
+  /* Hide columns */
   th.col-location, td.col-location,
-  th.col-posted, td.col-posted { display: none; }
-  .jobs-table th, .jobs-table td { padding: 10px 14px; }
-  .header-inner { padding: 24px 18px 18px; }
+  th.col-posted,   td.col-posted { display: none; }
+
+  /* Full width layout */
+  main { padding: 12px 12px 0 !important; }
+  .site-footer { padding: 16px 12px 32px !important; }
+  .header-inner { padding: 20px 16px 14px; }
   .header-divider, .subtitle { display: none; }
-  .mobile-sub { display: block; font-size: 12px; color: var(--muted2); margin-top: 3px; }
+
+  /* Table fills screen */
+  .table-card { border-radius: 6px; }
+  .jobs-table th, .jobs-table td { padding: 10px 12px; }
+  .jobs-table { min-width: 100%; }
+
+  /* Company cell */
+  .logo-wrap { width: 22px; height: 22px; margin-right: 8px; }
+  .logo-wrap img { width: 18px; height: 18px; }
+
+  /* Role title smaller */
+  .jobs-table td span { font-size: 13px; }
+
+  /* Apply button smaller */
+  .apply-btn { padding: 4px 8px; font-size: 10px; }
+
+  /* Mobile sub-line shows location + date */
+  .mobile-sub {
+    display: block;
+    font-size: 11px;
+    color: var(--muted2);
+    margin-top: 3px;
+    font-family: var(--mono);
+  }
+
+  /* Header stat */
+  .stat-num { font-size: 16px; }
+  .stat-label { font-size: 11px; }
+
+  /* Filters scroll horizontally */
+  .filter-bar {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    gap: 6px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .filter-bar::-webkit-scrollbar { display: none; }
+  .filter-group { flex-shrink: 0; }
+  .filter-btn { padding: 4px 9px; font-size: 10px; }
+  .refresh-btn { flex-shrink: 0; padding: 4px 9px; font-size: 10px; }
 }
