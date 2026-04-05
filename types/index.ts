@@ -1,4 +1,4 @@
-export type JobSource = "greenhouse" | "ashby" | "lever";
+export type JobSource = "greenhouse" | "ashby" | "lever" | "wellfound" | "meta" | "adzuna";
 
 export type Job = {
   id: string;

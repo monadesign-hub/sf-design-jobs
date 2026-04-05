@@ -47,6 +47,7 @@ function SourceBadge({ source }: { source: string }) {
     direct:     { label: "CO",   cls: "badge badge-direct" },
     wellfound:  { label: "WF",   cls: "badge badge-direct" },
     meta:       { label: "META", cls: "badge badge-ashby" },
+    adzuna:     { label: "AZ",   cls: "badge badge-lever" },
   };
   const { label, cls } = map[source] ?? { label: source.toUpperCase().slice(0,2), cls: "badge badge-direct" };
   return <span className={cls}>{label}</span>;

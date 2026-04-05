@@ -5,6 +5,7 @@ import { fetchAshby } from "@/lib/fetchers/ashby";
 import { fetchLever } from "@/lib/fetchers/lever";
 import { fetchWellfound } from "@/lib/fetchers/wellfound";
 import { fetchMeta } from "@/lib/fetchers/meta";
+import { fetchAdzuna } from "@/lib/fetchers/adzuna";
 import { deduplicateJobs } from "@/lib/normalize";
 import type { Job } from "@/types";
 
@@ -34,12 +35,13 @@ async function handleRefresh(req: NextRequest) {
 
   console.log("[cron/refresh] Starting fetch from all ATS sources…");
 
-  const [greenhouse, ashby, lever, wellfound, meta] = await Promise.allSettled([
+  const [greenhouse, ashby, lever, wellfound, meta, adzuna] = await Promise.allSettled([
     fetchGreenhouse(),
     fetchAshby(),
     fetchLever(),
     fetchWellfound(),
     fetchMeta(),
+    fetchAdzuna(),
   ]);
 
   const allJobs: Job[] = [
@@ -48,6 +50,7 @@ async function handleRefresh(req: NextRequest) {
     ...(lever.status === "fulfilled" ? lever.value : []),
     ...(wellfound.status === "fulfilled" ? wellfound.value : []),
     ...(meta.status === "fulfilled" ? meta.value : []),
+    ...(adzuna.status === "fulfilled" ? adzuna.value : []),
   ];
 
   const jobs = deduplicateJobs(allJobs);
@@ -106,6 +109,7 @@ async function handleRefresh(req: NextRequest) {
       lever:      lever.status === "fulfilled" ? lever.value.length : "error",
       wellfound:  wellfound.status === "fulfilled" ? wellfound.value.length : "error",
       meta:       meta.status === "fulfilled" ? meta.value.length : "error",
+      adzuna:     adzuna.status === "fulfilled" ? adzuna.value.length : "error",
     },
   });
 }
