@@ -29,7 +29,20 @@ const SLUGS = [
   "privy", "dynamic", "alchemy", "quicknode", "infura",
   // More SF startups
   "persona", "socure", "alloy", "sardine", "unit21",
-  "sift", "kount", "stripe-radar", "bolt", "recurly",
+  "sift", "kount", "bolt", "recurly",
+  // AI image / video
+  "midjourney", "pika-labs", "lumalabs", "ideogram",
+  "leonardoai", "stability", "runwayml", "suno",
+  // More dev tools
+  "turso", "supabase", "convex", "deno", "bun",
+  "grafana", "posthog", "highlight", "baselime",
+  // More product / ux tools
+  "sprig", "maze", "dovetail", "userleap",
+  "sprig", "contentsquare", "glassbox", "quantum-metric",
+  // More SF companies
+  "ironclad", "evisort", "spotdraft", "linkSquares",
+  "abridge", "nabla", "suki", "ambience",
+  "wayve", "waabi", "applied-intuition", "gatik",
 ];
 
 type AshbyJob = {

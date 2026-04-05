@@ -24,6 +24,21 @@ const SLUGS = [
   // Health
   "oscar", "clover", "alignment", "cityblock", "virta",
   "livongo", "omada", "hinge-health", "sword", "kaia",
+  // More enterprise / analytics
+  "looker", "domo", "thoughtspot", "sisense", "tableau",
+  "qlik", "microstrategy", "gooddata", "chartio",
+  // More design & creative
+  "canva", "mural", "miro", "invisionapp", "figma",
+  "abstract", "zeplin", "avocode", "sympli",
+  // More marketplace / commerce
+  "shippo", "easypost", "shipbob", "flexport",
+  "faire", "ordergroove", "bolt", "nacelle",
+  "yotpo", "reviews-io", "okendo", "stamped",
+  // More SF startups
+  "ironclad", "spotdraft", "evisort", "docusign",
+  "veeva", "benchling", "labviva", "scispot",
+  "verkada", "verkada", "samsara", "samsara-ag",
+  "vanta", "drata", "secureframe", "tugboatlogic",
 ];
 
 type LeverPosting = {

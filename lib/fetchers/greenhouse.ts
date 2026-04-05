@@ -42,8 +42,31 @@ const SLUGS = [
   "crowdstrike", "lacework", "orca-security", "snyk", "aquasecurity",
   "wiz", "cybereason", "exabeam", "hunters",
   // Other SF tech
-  "lyra", "notion", "lob", "golinks", "vanta", "drata",
-  "secureframe", "tugboat", "benchling", "benchmarkEmail",
+  "lyra", "lob", "golinks", "vanta", "drata",
+  "secureframe", "tugboat",
+  // Big tech & unicorns
+  "uber", "slack", "zoom", "canva", "mural", "samsara",
+  "surveymonkey", "medallia", "gainsight", "qualtrics",
+  "smartsheet", "clickup", "mondaydotcom", "wrike",
+  "figma", "invision", "abstract",
+  // More consumer & marketplace
+  "eventbrite", "stubhub", "viagogo", "seatgeek",
+  "rover", "wag", "pawp", "hippo",
+  "houzz", "hopin", "houseparty",
+  // More SF startups
+  "pilot-com", "mercury", "ramp", "brex",
+  "drata", "secureframe", "laika", "hypercomply",
+  "oneleet", "sprinto", "scytale",
+  // Logistics / Ops
+  "flexport", "shipbob", "easypost", "shippo",
+  "stord", "loadsmart", "convoy", "transfix",
+  // edTech
+  "coursera", "udemy", "masterclass", "outschool",
+  "khan-academy", "chegg", "turnitin", "instructure",
+  // More AI
+  "cohere", "together", "modal", "replicate",
+  "weights-biases", "scale", "labelbox",
+  "midjourney", "stability", "pika",
 ];
 
 type GreenHouseJob = {
