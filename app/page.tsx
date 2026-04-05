@@ -264,7 +264,12 @@ export default function HomePage() {
       {/* ── Footer ───────────────────────────────────────────────── */}
       <footer className="site-footer">
         <span>Last updated: {humanDateTime(lastUpdated)} · {total} total roles</span>
-        <span>Built with ♥ · Greenhouse · Ashby · Lever · Wellfound · Meta</span>
+        <span>
+          Built with ♥ ·{" "}
+          <a href="https://www.instagram.com/mona_wcz" target="_blank" rel="noopener noreferrer" style={{ color: "var(--muted2)", textDecoration: "none" }}>Instagram</a>
+          {" · "}
+          <a href="https://x.com/monaaitoken" target="_blank" rel="noopener noreferrer" style={{ color: "var(--muted2)", textDecoration: "none" }}>X</a>
+        </span>
       </footer>
     </div>
   );
