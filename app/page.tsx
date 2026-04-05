@@ -77,6 +77,7 @@ function SortIcon({ field, sort, dir }: { field: SortField; sort: SortField; dir
 // ---------------------------------------------------------------------------
 
 export default function HomePage() {
+  const [allJobs, setAllJobs]         = useState<Job[]>([]);
   const [jobs, setJobs]               = useState<Job[]>([]);
   const [total, setTotal]             = useState(0);
   const [companies, setCompanies]     = useState(0);
@@ -103,12 +104,7 @@ export default function HomePage() {
         throw new Error(`API error ${res.status}: ${text.slice(0, 200)}`);
       }
       const data: JobsApiResponse = await res.json();
-      let filtered = data.jobs;
-      if (age === "12h") filtered = filtered.filter(j => j.postedAt && Date.now() - new Date(j.postedAt).getTime() < 12*60*60*1000);
-      if (age === "24h") filtered = filtered.filter(j => j.postedAt && Date.now() - new Date(j.postedAt).getTime() < 24*60*60*1000);
-      setJobs(filtered);
-      setTotal(filtered.length);
-      setCompanies(new Set(filtered.map(j => j.company)).size);
+      setAllJobs(data.jobs);
       setLastUpdated(data.lastUpdated);
       const isDefaultFilters = location === "all" && seniority === "all" && age === "all";
       if (data.total === 0 && isDefaultFilters && !refreshing) triggerRefresh();
@@ -131,6 +127,16 @@ export default function HomePage() {
   }
 
   useEffect(() => { fetchJobs(); }, [fetchJobs]);
+
+  // Apply age filter client-side whenever jobs or age changes
+  useEffect(() => {
+    let filtered = allJobs;
+    if (age === "12h") filtered = filtered.filter(j => j.postedAt && Date.now() - new Date(j.postedAt).getTime() < 12*60*60*1000);
+    if (age === "24h") filtered = filtered.filter(j => j.postedAt && Date.now() - new Date(j.postedAt).getTime() < 24*60*60*1000);
+    setJobs(filtered);
+    setTotal(filtered.length);
+    setCompanies(new Set(filtered.map(j => j.company)).size);
+  }, [allJobs, age]);
 
   function handleSort(field: SortField) {
     if (sort === field) setDir(d => d === "asc" ? "desc" : "asc");
