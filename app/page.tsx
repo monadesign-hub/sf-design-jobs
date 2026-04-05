@@ -87,6 +87,7 @@ export default function HomePage() {
 
   const [location, setLocation]   = useState<LocationFilter>("all");
   const [seniority, setSeniority] = useState<SeniorityFilter>("all");
+  const [age, setAge]             = useState<"all"|"24h"|"12h">("all");
   const [sort, setSort]           = useState<SortField>("postedAt");
   const [dir, setDir]             = useState<SortDir>("desc");
 
@@ -102,12 +103,14 @@ export default function HomePage() {
         throw new Error(`API error ${res.status}: ${text.slice(0, 200)}`);
       }
       const data: JobsApiResponse = await res.json();
-      setJobs(data.jobs);
-      setTotal(data.total);
-      setCompanies(data.companies);
+      let filtered = data.jobs;
+      if (age === "12h") filtered = filtered.filter(j => j.postedAt && Date.now() - new Date(j.postedAt).getTime() < 12*60*60*1000);
+      if (age === "24h") filtered = filtered.filter(j => j.postedAt && Date.now() - new Date(j.postedAt).getTime() < 24*60*60*1000);
+      setJobs(filtered);
+      setTotal(filtered.length);
+      setCompanies(new Set(filtered.map(j => j.company)).size);
       setLastUpdated(data.lastUpdated);
-      // Only auto-refresh on first load when DB is completely empty
-      const isDefaultFilters = location === "all" && seniority === "all";
+      const isDefaultFilters = location === "all" && seniority === "all" && age === "all";
       if (data.total === 0 && isDefaultFilters && !refreshing) triggerRefresh();
     } catch (e) {
       setError(e instanceof Error ? e.message : "Unknown error");
@@ -161,6 +164,15 @@ export default function HomePage() {
                   className={`filter-btn ${location === val ? "active" : ""}`}
                   onClick={() => setLocation(val)}>
                   {val === "all" ? "All" : val === "remote" ? "Remote OK" : "SF Only"}
+                </button>
+              ))}
+            </div>
+            <div className="filter-group">
+              {(["all","12h","24h"] as ("all"|"12h"|"24h")[]).map((val) => (
+                <button key={val}
+                  className={`filter-btn ${age === val ? "active" : ""}`}
+                  onClick={() => setAge(val)}>
+                  {val === "all" ? "All Time" : val === "12h" ? "Last 12h" : "Last 24h"}
                 </button>
               ))}
             </div>
