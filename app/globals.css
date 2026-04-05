@@ -334,15 +334,15 @@ h1 {
   th.col-posted,   td.col-posted { display: none; }
 
   /* Full width layout */
-  main { padding: 12px 12px 0 !important; }
-  .site-footer { padding: 16px 12px 32px !important; }
-  .header-inner { padding: 20px 16px 14px; }
+  main { padding: 8px 6px 0 !important; }
+  .site-footer { padding: 16px 10px 32px !important; }
+  .header-inner { padding: 20px 12px 14px; }
   .header-divider, .subtitle { display: none; }
 
-  /* Table fills screen */
-  .table-card { border-radius: 6px; }
-  .jobs-table th, .jobs-table td { padding: 10px 12px; }
-  .jobs-table { min-width: 100%; }
+  /* Table fills screen edge to edge */
+  .table-card { border-radius: 4px; border-left: none; border-right: none; }
+  .jobs-table th, .jobs-table td { padding: 10px 10px; }
+  .jobs-table { min-width: 100%; width: 100%; }
 
   /* Company cell */
   .logo-wrap { width: 22px; height: 22px; margin-right: 8px; }
@@ -367,17 +367,16 @@ h1 {
   .stat-num { font-size: 16px; }
   .stat-label { font-size: 11px; }
 
-  /* Filters scroll horizontally */
+  /* Filters wrap into two rows */
   .filter-bar {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    padding-bottom: 4px;
+    flex-wrap: wrap;
     gap: 6px;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+    padding-bottom: 2px;
   }
-  .filter-bar::-webkit-scrollbar { display: none; }
-  .filter-group { flex-shrink: 0; }
-  .filter-btn { padding: 4px 9px; font-size: 10px; }
-  .refresh-btn { flex-shrink: 0; padding: 4px 9px; font-size: 10px; }
+  .filter-group {
+    flex-shrink: 0;
+    flex-wrap: wrap;
+  }
+  .filter-btn { padding: 5px 8px; font-size: 10.5px; }
+  .refresh-btn { flex-shrink: 0; padding: 5px 10px; font-size: 10.5px; margin-left: 0; }
 }

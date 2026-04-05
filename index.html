@@ -394,18 +394,22 @@
   @media (max-width: 640px) {
     th.col-location, td.col-location,
     th.col-posted,   td.col-posted { display: none; }
-    th, td { padding: 10px 14px; }
-    .header-inner { padding: 24px 18px 18px; }
-    main { padding: 14px 18px 0; }
-    footer { padding: 16px 18px 32px; }
+    th, td { padding: 10px 12px; }
+    .header-inner { padding: 20px 14px 14px; }
+    main { padding: 12px 12px 0; }
+    footer { padding: 16px 12px 32px; }
     .header-divider, .subtitle { display: none !important; }
     .mobile-sub {
       display: block;
-      font-size: 12px;
+      font-size: 11px;
       color: var(--muted2);
       margin-top: 3px;
     }
     .stat-num { font-size: 16px; }
+    .filters { flex-wrap: wrap; gap: 6px; }
+    .filter-group { flex-shrink: 0; flex-wrap: wrap; }
+    .filter-btn { padding: 5px 8px; font-size: 10.5px; }
+    .refresh-btn { margin-left: 0; padding: 5px 10px; font-size: 10.5px; }
   }
 </style>
 </head>
