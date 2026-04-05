@@ -28,7 +28,7 @@ const SLUGS = [
   "mercury", "ramp", "brex", "puzzle", "finta", "liveblocks",
   "privy", "dynamic", "alchemy", "quicknode", "infura",
   // More SF startups
-  "persona", "socure", "alloy", "sardine", "unit21",
+  "nooks", "persona", "socure", "alloy", "sardine", "unit21",
   "sift", "kount", "bolt", "recurly",
   // AI image / video
   "midjourney", "pika-labs", "lumalabs", "ideogram",
