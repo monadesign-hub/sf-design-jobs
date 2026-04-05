@@ -125,10 +125,11 @@ export default function HomePage() {
 
   useEffect(() => { fetchJobs(); }, [fetchJobs]);
 
-  // Age filter + derived stats computed instantly client-side
+  // Age filter — use real ATS date if available, fall back to when we first scraped it
   const jobs = useMemo(() => {
-    if (age === "12h") return allJobs.filter(j => j.postedAt && Date.now() - new Date(j.postedAt).getTime() < 12*60*60*1000);
-    if (age === "24h") return allJobs.filter(j => j.postedAt && Date.now() - new Date(j.postedAt).getTime() < 24*60*60*1000);
+    const freshDate = (j: Job) => j.postedAt ?? j.firstSeen;
+    if (age === "12h") return allJobs.filter(j => { const d = freshDate(j); return d && Date.now() - new Date(d).getTime() < 12*60*60*1000; });
+    if (age === "24h") return allJobs.filter(j => { const d = freshDate(j); return d && Date.now() - new Date(d).getTime() < 24*60*60*1000; });
     return allJobs;
   }, [allJobs, age]);
 

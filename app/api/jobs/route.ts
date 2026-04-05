@@ -64,6 +64,7 @@ export async function GET(req: NextRequest) {
     url: row.url,
     source: row.source,
     postedAt: row.posted_at ?? null,
+    firstSeen: row.created_at ?? null, // when WE first added this job
     isRemote: row.is_remote,
     logoUrl: row.logo_url,
   }));
