@@ -9,8 +9,8 @@ export type Job = {
   location: string;
   url: string;
   source: JobSource;
-  postedAt: string | null;  // ISO string — real date from ATS
-  firstSeen: string | null; // ISO string — when we first scraped this job
+  postedAt: string | null;   // ISO string — real date from ATS
+  firstSeen?: string | null; // ISO string — when we first scraped this job
   isRemote: boolean;
   logoUrl?: string;
 };
