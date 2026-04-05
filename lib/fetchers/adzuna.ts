@@ -89,11 +89,6 @@ async function fetchQuery(query: string): Promise<Job[]> {
 }
 
 export async function fetchAdzuna(): Promise<Job[]> {
-  const all: Job[] = [];
-  for (const query of QUERIES) {
-    const results = await fetchQuery(query);
-    all.push(...results);
-    await new Promise((r) => setTimeout(r, 300));
-  }
-  return all;
+  const results = await Promise.allSettled(QUERIES.map(fetchQuery));
+  return results.flatMap((r) => (r.status === "fulfilled" ? r.value : []));
 }

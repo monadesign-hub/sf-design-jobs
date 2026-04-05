@@ -115,11 +115,6 @@ async function fetchCompany(slug: string): Promise<Job[]> {
 }
 
 export async function fetchAshby(): Promise<Job[]> {
-  const all: Job[] = [];
-  for (const slug of SLUGS) {
-    const jobs = await fetchCompany(slug);
-    all.push(...jobs);
-    await new Promise((r) => setTimeout(r, 120));
-  }
-  return all;
+  const results = await Promise.allSettled(SLUGS.map(fetchCompany));
+  return results.flatMap((r) => (r.status === "fulfilled" ? r.value : []));
 }
