@@ -172,7 +172,6 @@ export default function HomePage() {
                 { val: "senior", label: "Senior" },
                 { val: "staff", label: "Staff" },
                 { val: "lead", label: "Lead" },
-                { val: "manager", label: "Manager" },
               ] as { val: SeniorityFilter; label: string }[]).map(({ val, label }) => (
                 <button key={val}
                   className={`filter-btn ${seniority === val ? "active" : ""}`}
