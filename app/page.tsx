@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import type {
   Job,
   JobsApiResponse,
@@ -78,9 +78,6 @@ function SortIcon({ field, sort, dir }: { field: SortField; sort: SortField; dir
 
 export default function HomePage() {
   const [allJobs, setAllJobs]         = useState<Job[]>([]);
-  const [jobs, setJobs]               = useState<Job[]>([]);
-  const [total, setTotal]             = useState(0);
-  const [companies, setCompanies]     = useState(0);
   const [lastUpdated, setLastUpdated] = useState<string | null>(null);
   const [loading, setLoading]         = useState(true);
   const [refreshing, setRefreshing]   = useState(false);
@@ -106,7 +103,7 @@ export default function HomePage() {
       const data: JobsApiResponse = await res.json();
       setAllJobs(data.jobs);
       setLastUpdated(data.lastUpdated);
-      const isDefaultFilters = location === "all" && seniority === "all" && age === "all";
+      const isDefaultFilters = location === "all" && seniority === "all";
       if (data.total === 0 && isDefaultFilters && !refreshing) triggerRefresh();
     } catch (e) {
       setError(e instanceof Error ? e.message : "Unknown error");
@@ -128,15 +125,15 @@ export default function HomePage() {
 
   useEffect(() => { fetchJobs(); }, [fetchJobs]);
 
-  // Apply age filter client-side whenever jobs or age changes
-  useEffect(() => {
-    let filtered = allJobs;
-    if (age === "12h") filtered = filtered.filter(j => j.postedAt && Date.now() - new Date(j.postedAt).getTime() < 12*60*60*1000);
-    if (age === "24h") filtered = filtered.filter(j => j.postedAt && Date.now() - new Date(j.postedAt).getTime() < 24*60*60*1000);
-    setJobs(filtered);
-    setTotal(filtered.length);
-    setCompanies(new Set(filtered.map(j => j.company)).size);
+  // Age filter + derived stats computed instantly client-side
+  const jobs = useMemo(() => {
+    if (age === "12h") return allJobs.filter(j => j.postedAt && Date.now() - new Date(j.postedAt).getTime() < 12*60*60*1000);
+    if (age === "24h") return allJobs.filter(j => j.postedAt && Date.now() - new Date(j.postedAt).getTime() < 24*60*60*1000);
+    return allJobs;
   }, [allJobs, age]);
+
+  const total = jobs.length;
+  const companies = new Set(jobs.map(j => j.company)).size;
 
   function handleSort(field: SortField) {
     if (sort === field) setDir(d => d === "asc" ? "desc" : "asc");
