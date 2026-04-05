@@ -354,6 +354,11 @@ h1 {
   /* Apply button smaller */
   .apply-btn { padding: 4px 8px; font-size: 10px; }
 
+  /* Shrink badges on mobile */
+  .badge { font-size: 7px; padding: 1px 4px; margin-left: 4px; }
+  .badge-new { font-size: 6.5px; padding: 1px 3px; }
+  .badge-remote { font-size: 7px; padding: 1px 4px; }
+
   /* Mobile sub-line shows location + date */
   .mobile-sub {
     display: block;
