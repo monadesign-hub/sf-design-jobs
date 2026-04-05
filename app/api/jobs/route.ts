@@ -63,7 +63,7 @@ export async function GET(req: NextRequest) {
     location: row.location,
     url: row.url,
     source: row.source,
-    postedAt: row.posted_at ?? row.created_at, // fall back to when WE added it
+    postedAt: row.posted_at ?? null,
     isRemote: row.is_remote,
     logoUrl: row.logo_url,
   }));
