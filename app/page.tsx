@@ -166,7 +166,7 @@ export default function HomePage() {
               <div className="header-dot" />
               <h1>SF Design Jobs</h1>
               <div className="header-divider" />
-              <span className="subtitle">Product designer roles · San Francisco Bay Area</span>
+              <span className="subtitle">Product Designer roles · San Francisco Bay Area</span>
             </div>
             <div className="stat" suppressHydrationWarning style={{ opacity: loading || refreshing ? 0.4 : 1, transition: "opacity 0.2s" }}>
               <span className="stat-num" suppressHydrationWarning>{total}</span>
